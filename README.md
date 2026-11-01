@@ -1,8 +1,8 @@
+# A7M3 服务模式 Shell 连接工具
+
 > 项目有借助大量AI工具，请注意辨别
 >
 > qq交流群:736434809
-
-# a7m3-connect-shell
 
 通过 USB **Senser 服务模式**连接 Sony A7M3（ILCE-7M3），在相机上执行命令、上传/下载文件。
 
