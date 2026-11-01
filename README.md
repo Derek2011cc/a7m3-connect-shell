@@ -128,7 +128,7 @@ cam-shell.cmd pull /tmp/result.bin .\result.bin
 | `service mode did not appear` | usbipd 自动 attach 循环没在跑；重新运行 `cam-shell.cmd`，确认 `usbipd list` 状态为 `Attached` |
 | 相机不在 `usbipd list` | 相机不是“大量存储”模式、换 USB 口/线、重新插拔 |
 | 退出后相机没回到 `0c02` | 拔插一次 USB；Windows 盘符会恢复 |
-| `PMCA not found` | 运行 `setup.ps1`，或设置 `PMCA_PATH` 指向 Sony-PMCA-RE 目录 |
+| `PMCA not found` | 运行 `setup.cmd`，或设置 `PMCA_PATH` 指向 Sony-PMCA-RE 目录 |
 | `Permission denied` | 通过 `cam-shell.cmd`（内部以 root 运行 WSL）；Linux 用 `sudo` |
 
 ## 已验证环境
@@ -154,11 +154,32 @@ cam_shell.py      主程序（认证 + 终端/文件操作）
 cam-shell.cmd     Windows 入口
 cam-shell.ps1     usbipd 检查/自动 attach + 转 WSL
 cam-shell.sh      Linux/WSL 入口
-setup.ps1         Windows 一键安装
+setup.cmd         Windows 一键安装入口
+setup.ps1         Windows 安装脚本
 setup.sh          WSL 依赖 + PMCA 安装
 requirements.txt  Python 依赖
 LICENSE           MIT
 ```
+
+## 致谢
+
+本工具站在这些项目的肩膀上：
+
+- [ma1co/Sony-PMCA-RE](https://github.com/ma1co/Sony-PMCA-RE) — Senser 认证、USB 协议、
+  backup/Jiritsu 的公开实现；没有它就没有这个工具；
+- [dorssel/usbipd-win](https://github.com/dorssel/usbipd-win) — 把相机 USB 直通给 WSL；
+- [t2r05/fx30-senser-map](https://github.com/t2r05/fx30-senser-map) — Senser/Jiritsu 服务会话
+  通道、命令映射与 payload ELF 规则；
+- [nolan2628/Sony-ZVE-10-Camtool](https://github.com/nolan2628/Sony-ZVE-10-Camtool) — 同 SoC
+  （CXD90045）机型的服务模式工具与远程 shell 思路；
+- [YuuLuo/a7c2-service-preload](https://github.com/YuuLuo/a7c2-service-preload) — Jiritsu 路径
+  穿越与 `libJit` 加载链的早期工作；
+- Python 依赖：[pyusb](https://github.com/pyusb/pyusb)、
+  [pycryptodomex](https://github.com/Legrandin/pycryptodome)、
+  [asn1crypto](https://github.com/wbond/asn1crypto)、
+  [axmlparserpy](https://github.com/androguard/androguard)、
+  [tlslite-ng](https://github.com/tlsfuzzer/tlslite-ng)；
+- [WSL2 / Ubuntu](https://learn.microsoft.com/windows/wsl/) 与 libusb。
 
 ## 许可
 
